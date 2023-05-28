@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MEC;
 using PlayerRoles;
 using PluginAPI.Core;
 using PluginAPI.Core.Attributes;
@@ -20,7 +21,7 @@ namespace SCPSpawnFixer
             _players.Add(player.UserId);
             
             Log.Info($"{player.Nickname} has spawned as SCP! Respawning it.");
-            player.SetRole(role, RoleChangeReason.None);
+            Timing.CallDelayed(0.1f, () => player.SetRole(role, RoleChangeReason.None));
         }
         
         [PluginEvent(ServerEventType.RoundRestart)]
