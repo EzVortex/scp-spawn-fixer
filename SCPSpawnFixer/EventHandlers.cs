@@ -16,13 +16,20 @@ namespace SCPSpawnFixer
         [PluginEvent(ServerEventType.PlayerSpawn)]
         public void OnPlayerSpawn(Player player, RoleTypeId role)
         {
-            if (player.Role == RoleTypeId.Scp0492 || _players.Contains(player.UserId) || _isRoundStarted)
+            if (String.IsNullOrEmpty(player.UserId) || player.Role == RoleTypeId.Scp0492 || _players.Contains(player.UserId) || _isRoundStarted)
                 return;
             
             _players.Add(player.UserId);
-            
-            Log.Info($"{player.Nickname} has spawned! Respawning it.");
-            Timing.CallDelayed(0.1f, () => player.SetRole(role, RoleChangeReason.None));
+            var position = player.Position;
+
+            Timing.CallDelayed(1f, () =>
+            {
+                if (position.y < -1000f)
+                {
+                    Log.Info($"{player.Nickname} has spawned in the void! Respawning it.");
+                    player.SetRole(role, RoleChangeReason.None);
+                }
+            });
         }
         
         [PluginEvent(ServerEventType.RoundRestart)]
