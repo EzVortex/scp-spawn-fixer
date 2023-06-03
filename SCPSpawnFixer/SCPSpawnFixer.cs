@@ -9,7 +9,7 @@
         public static SCPSpawnFixer Instance { get; private set; }
 
         [PluginPriority(LoadPriority.Highest)]
-        [PluginEntryPoint("SCPSpawnFixer", "1.0.0", "A plugin that fixes scp spawn blackout.", "VORTEX")]
+        [PluginEntryPoint("SCPSpawnFixer", "1.0.3", "A plugin that fixes scp spawn blackout.", "VORTEX")]
         void LoadPlugin()
         {
             Instance = this;

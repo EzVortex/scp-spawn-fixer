@@ -22,7 +22,7 @@ namespace SCPSpawnFixer
             _players.Add(player.UserId);
             var position = player.Position;
 
-            Timing.CallDelayed(1f, () =>
+            Timing.CallDelayed(5f, () =>
             {
                 if (position.y < -1000f)
                 {
