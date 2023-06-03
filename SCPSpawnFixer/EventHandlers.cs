@@ -20,11 +20,10 @@ namespace SCPSpawnFixer
                 return;
             
             _players.Add(player.UserId);
-            var position = player.Position;
 
             Timing.CallDelayed(5f, () =>
             {
-                if (position.y < -1000f)
+                if (player.Position.y < -1000f)
                 {
                     Log.Info($"{player.Nickname} has spawned in the void! Respawning it.");
                     player.SetRole(role, RoleChangeReason.None);
